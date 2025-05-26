@@ -61,15 +61,21 @@ async def tryon(
     else:
         # Real OOTDiffusion subprocess
         cmd = [
-            "/workspace/miniconda3/envs/ootd/bin/python",  # Replace with your conda env python path
+            "/workspace/miniconda3/envs/ootd/bin/python",
             RUN_OOTD_PATH,
             "--model_path", model_path,
             "--cloth_path", cloth_path,
             "--scale", str(scale),
             "--sample", str(sample)
         ]
+
         try:
-            subprocess.run(cmd, check=True)
+            # Run with correct working directory
+            subprocess.run(
+                cmd, 
+                check=True, 
+                cwd=os.path.dirname(RUN_OOTD_PATH),
+            )
         except subprocess.CalledProcessError as e:
             return {"status": "error", "message": f"Processing failed: {e}"}
 
