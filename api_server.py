@@ -60,16 +60,19 @@ async def tryon(
             fake_img_path = os.path.join(OOTD_OUTPUT_DIR, f"out_hd_{i}.png")
             fake_img.save(fake_img_path)
     else:
+        conda_python = "/workspace/miniconda3/envs/ootd/bin/python"
         # Real OOTDiffusion run
         cmd = [
-            "python", "../run_ootd.py",
+            conda_python,
+            "run_ootd.py",
             "--model_path", model_path,
             "--cloth_path", cloth_path,
             "--scale", str(scale),
             "--sample", str(sample)
         ]
+            
         try:
-            subprocess.run(cmd, check=True, cwd="run")
+            subprocess.run(cmd, check=True, cwd="..")
         except subprocess.CalledProcessError as e:
             return {"status": "error", "message": f"Processing failed: {e}"}
 
