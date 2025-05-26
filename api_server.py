@@ -14,7 +14,7 @@ app = FastAPI()
 TEMP_INPUT_DIR = "temp_inputs"
 FINAL_OUTPUT_DIR = "served_outputs"
 OOTD_OUTPUT_DIR = "../images_output"  # original ootdiffusion output folder
-USE_FAKE_PROCESSING = True  # Set to False to use real OOTDiffusion
+USE_FAKE_PROCESSING = False  # Set to False to use real OOTDiffusion
 
 # Create necessary directories
 os.makedirs(TEMP_INPUT_DIR, exist_ok=True)
