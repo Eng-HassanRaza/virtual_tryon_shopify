@@ -13,7 +13,7 @@ app = FastAPI()
 # Configuration
 TEMP_INPUT_DIR = "temp_inputs"
 FINAL_OUTPUT_DIR = "served_outputs"
-OOTD_OUTPUT_DIR = "images_output"  # original ootdiffusion output folder
+OOTD_OUTPUT_DIR = "../images_output"  # original ootdiffusion output folder
 USE_FAKE_PROCESSING = True  # Set to False to use real OOTDiffusion
 
 # Create necessary directories
@@ -62,7 +62,7 @@ async def tryon(
     else:
         # Real OOTDiffusion run
         cmd = [
-            "python", "run_ootd.py",
+            "python", "../run_ootd.py",
             "--model_path", model_path,
             "--cloth_path", cloth_path,
             "--scale", str(scale),
